@@ -18,7 +18,7 @@ void historial(vector<string>);
 int main(int argc, char const *argv[]){
 	stringstream ss;
 	int op=menu();
-	int primero, segundo;
+	int primero, segundo,resultado;
 	vector<Racional> racionales;
 	vector<string> lista;
 	while (op!=7){
@@ -33,7 +33,7 @@ int main(int argc, char const *argv[]){
 			imprimir(racionales);
 			cout<<"Posicion Primer Pacional: ";
 			cin>>primero;
-			cout<<"Posicon Segundo Racional: ";
+			cout<<"Posicion Segundo Racional: ";
 			cin>>segundo;
 			cout<<racionales.at(primero)<<" + "<<racionales.at(segundo)<<" = ";
 			cout<<racionales.at(primero)+racionales.at(segundo)<<endl;
@@ -44,18 +44,18 @@ int main(int argc, char const *argv[]){
 			imprimir(racionales);
 			cout<<"Posicion Primer Pacional: ";
 			cin>>primero;
-			cout<<"Posicon Segundo Racional: ";
+			cout<<"Posicion Segundo Racional: ";
 			cin>>segundo;
 			cout<<racionales.at(primero)<<" - "<<racionales.at(segundo)<<" = ";
-			cout<<racionales.at(primero)-racionales.at(segundo)<<endl;
-			ss<<racionales.at(primero)<<" - "<<racionales.at(segundo)<<" = "<<racionales.at(primero)-racionales.at(segundo);
+			cout<<racionales.at(primero)-racionales.at(segundo);
+			ss<<racionales.at(primero)<<" - "<<racionales.at(segundo)<<" = "<<racionales.at(primero)-racionales.at(segundo);;
 			lista.push_back(ss.str());
 			ss.str("");
 		}else if(op==4){
 			imprimir(racionales);
 			cout<<"Posicion Primer Pacional: ";
 			cin>>primero;
-			cout<<"Posicon Segundo Racional: ";
+			cout<<"Posicion Segundo Racional: ";
 			cin>>segundo;
 			cout<<racionales.at(primero)<<" * "<<racionales.at(segundo)<<" = ";
 			cout<<racionales.at(primero)*racionales.at(segundo)<<endl;
@@ -66,7 +66,7 @@ int main(int argc, char const *argv[]){
 			imprimir(racionales);
 			cout<<"Posicion Primer Pacional: ";
 			cin>>primero;
-			cout<<"Posicon Segundo Racional: ";
+			cout<<"Posicion Segundo Racional: ";
 			cin>>segundo;
 			cout<<racionales.at(primero)<<" / "<<racionales.at(segundo)<<" = ";
 			cout<<racionales.at(primero)/racionales.at(segundo)<<endl;

@@ -15,6 +15,7 @@ public:
 	const Racional& operator-=(const Racional&);
 	const Racional& operator*=(const Racional&);
 	const Racional& operator/=(const Racional&);
+	void simplificar();
 	friend ostream& operator<<(ostream&, const Racional&);	
 };
 

@@ -10,6 +10,7 @@ using std::ostream;
 using std::showpos;
 using std::noshowpos;
 using std::abs;
+using std::cout;
 
 Racional::Racional(int num, int denom){
 	int denominador, numerador;
@@ -28,7 +29,6 @@ Racional::Racional(int num, int denom){
 	}
 
 	//simplificar
-
 	if(num<denom){
 		for (int i = 1; i <= num; ++i){
 			if(num%i==0 && denom%i==0){
@@ -86,32 +86,36 @@ const Racional operator/(const Racional& lhs, const Racional& rhs){
 }
 
 const Racional& Racional::operator+=(const Racional& r){
-   num *= r.denom;
-   r.num *= denom;
+   num = (r.denom*num + r.num*denom);
    denom *= r.denom;
+   simplificar();
    return *this;
 }
 
 const Racional& Racional::operator-=(const Racional& r){
-   return *this += -r;
+   num = (r.denom*num - r.num*denom);
+   denom *= r.denom;
+   simplificar();
+   return *this;
 }
 
 const Racional& Racional::operator*=(const Racional& r){
    num*= r.num;
    denom*=r.denom;
+   simplificar();
    return *this;
 }
 
 const Racional& Racional::operator/=(const Racional& r){
-   num*= r.denom;
-   denom*=r.num;
+   	num*= r.denom;
+   	denom*=r.num;
+   	simplificar();
+   
    return *this;
 }
 
 ostream& operator<<(ostream& output, const Racional& r){
-	if(r.denom==1){
-		output<<r.num;
-	}else if(r.num==0){
+	if(r.denom==1 || r.num==0){
 		output<<r.num;
 	}else{
 		output<<r.num<<"/"<<r.denom;
@@ -120,5 +124,25 @@ ostream& operator<<(ostream& output, const Racional& r){
 }
 
 void Racional::simplificar(){
-
+	int denominador, numerador;
+	
+	if(num<denom){
+		for (int i = 1; i <= num; ++i){
+			if(num%i==0 && denom%i==0){
+				numerador=num/i;
+				denominador=denom/i;
+			}
+		}
+		num=numerador;
+		denom=denominador;
+	}else{
+		for (int i = 1; i <= denom; ++i){
+			if(num%i==0 && denom%i==0){
+				numerador=num/i;
+				denominador=denom/i;
+			}
+		}
+		num=numerador;
+		denom=denominador;
+	}
 }
