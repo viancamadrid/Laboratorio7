@@ -59,10 +59,8 @@ const Racional& Racional::operator=(const Racional& r){
 	return *this;
 }
 
-string Racional::toString() const{
-	stringstream ss;
-	ss<<num<<"/"<<denom;
-	return ss.str();
+const Racional Racional::operator-() const{
+   return Racional(-num, -denom);
 }
 
 const Racional operator+(const Racional& lhs, const Racional& rhs){
@@ -76,27 +74,51 @@ const Racional operator-(const Racional& lhs, const Racional& rhs){
 	return retVal;
 }
 
-const Racional Racional::operator-() const{
-   return Racional(-num, -denom);
+const Racional operator*(const Racional& lhs, const Racional& rhs){
+	Racional retVal = lhs;
+	retVal *= rhs;
+	return retVal;
+}
+const Racional operator/(const Racional& lhs, const Racional& rhs){
+	Racional retVal = lhs;
+	retVal /= rhs;
+	return retVal;
 }
 
 const Racional& Racional::operator+=(const Racional& r){
-   num += r.num;
-   denom += r.denom;
+   num *= r.denom;
+   r.num *= denom;
+   denom *= r.denom;
    return *this;
 }
 
 const Racional& Racional::operator-=(const Racional& r){
    return *this += -r;
 }
-/*
-const Racional operator*(const Racional& lhs, const Racional& rhs){
-	Racional retVal = lhs;
-	retVal -= rhs;
-	return retVal;
+
+const Racional& Racional::operator*=(const Racional& r){
+   num*= r.num;
+   denom*=r.denom;
+   return *this;
 }
-const Racional operator/(const Racional& lhs, const Racional& rhs){
-	Racional retVal = lhs;
-	retVal -= rhs;
-	return retVal;
-}*/
+
+const Racional& Racional::operator/=(const Racional& r){
+   num*= r.denom;
+   denom*=r.num;
+   return *this;
+}
+
+ostream& operator<<(ostream& output, const Racional& r){
+	if(r.denom==1){
+		output<<r.num;
+	}else if(r.num==0){
+		output<<r.num;
+	}else{
+		output<<r.num<<"/"<<r.denom;
+	}
+	return output;	
+}
+
+void Racional::simplificar(){
+
+}

@@ -1,18 +1,26 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <sstream>
 #include "racional.h"
 
 using std::cin;
 using std::cout;
 using std::endl;
 using std::vector;
+using std::string;
+using std::stringstream;
 
 int menu();
 void imprimir(vector<Racional>);
+void historial(vector<string>);
 
 int main(int argc, char const *argv[]){
+	stringstream ss;
 	int op=menu();
+	int primero, segundo;
 	vector<Racional> racionales;
+	vector<string> lista;
 	while (op!=7){
 		if(op==1){
 			int numerador, denominador;
@@ -23,14 +31,50 @@ int main(int argc, char const *argv[]){
 			racionales.push_back(Racional(numerador,denominador));
 		}else if(op==2){
 			imprimir(racionales);
+			cout<<"Posicion Primer Pacional: ";
+			cin>>primero;
+			cout<<"Posicon Segundo Racional: ";
+			cin>>segundo;
+			cout<<racionales.at(primero)<<" + "<<racionales.at(segundo)<<" = ";
+			cout<<racionales.at(primero)+racionales.at(segundo)<<endl;
+			ss<<racionales.at(primero)<<" + "<<racionales.at(segundo)<<" = "<<racionales.at(primero)+racionales.at(segundo);
+			lista.push_back(ss.str());
+			ss.str("");
 		}else if(op==3){
-
+			imprimir(racionales);
+			cout<<"Posicion Primer Pacional: ";
+			cin>>primero;
+			cout<<"Posicon Segundo Racional: ";
+			cin>>segundo;
+			cout<<racionales.at(primero)<<" - "<<racionales.at(segundo)<<" = ";
+			cout<<racionales.at(primero)-racionales.at(segundo)<<endl;
+			ss<<racionales.at(primero)<<" - "<<racionales.at(segundo)<<" = "<<racionales.at(primero)-racionales.at(segundo);
+			lista.push_back(ss.str());
+			ss.str("");
 		}else if(op==4){
-
+			imprimir(racionales);
+			cout<<"Posicion Primer Pacional: ";
+			cin>>primero;
+			cout<<"Posicon Segundo Racional: ";
+			cin>>segundo;
+			cout<<racionales.at(primero)<<" * "<<racionales.at(segundo)<<" = ";
+			cout<<racionales.at(primero)*racionales.at(segundo)<<endl;
+			ss<<racionales.at(primero)<<" * "<<racionales.at(segundo)<<" = "<<racionales.at(primero)*racionales.at(segundo);
+			lista.push_back(ss.str());
+			ss.str("");
 		}else if(op==5){
-
+			imprimir(racionales);
+			cout<<"Posicion Primer Pacional: ";
+			cin>>primero;
+			cout<<"Posicon Segundo Racional: ";
+			cin>>segundo;
+			cout<<racionales.at(primero)<<" / "<<racionales.at(segundo)<<" = ";
+			cout<<racionales.at(primero)/racionales.at(segundo)<<endl;
+			ss<<racionales.at(primero)<<" / "<<racionales.at(segundo)<<" = "<<racionales.at(primero)/racionales.at(segundo);
+			lista.push_back(ss.str());
+			ss.str("");
 		}else if(op==6){
-
+			historial(lista);
 		}
 		op=menu();
 	}
@@ -53,7 +97,16 @@ int menu(){
 
 void imprimir(vector<Racional> racionales){
 	for (int i = 0; i < racionales.size(); ++i){
-		cout<<i<<") "<<racionales.at(i).toString()<<endl;
+		cout<<i<<") "<<racionales.at(i)<<endl;
 	}
 	return;
 }
+
+void historial(vector<string> lista){
+	for (int i = 0; i < lista.size(); ++i){
+		cout<<i<<") "<<lista.at(i)<<endl;
+	}
+	return;
+}
+
+
